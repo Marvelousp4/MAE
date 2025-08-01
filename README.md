@@ -5,7 +5,7 @@
 Clone the repository and install the package in editable mode. Dependencies will be installed automatically.
 
 ```bash
-git clone https://github.com/your-username/fmri-mae.git
+git clone https://github.com/Marvelousp4/fmri-mae.git
 cd fmri-mae
 pip install -e .
 ```
