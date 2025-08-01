@@ -1,0 +1,80 @@
+data:
+  data_dir: data/
+  dataset_name: synthetic
+  n_downstream_subjects: 300
+  n_pretrain_subjects: 1000
+  test_split: 0.3
+  train_val_split: 0.9
+  val_split: 0.5
+deterministic: true
+evaluation:
+  brain_networks:
+    Attention:
+    - 2
+    - 7
+    - 12
+    - 17
+    - 22
+    DMN:
+    - 0
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    Executive:
+    - 3
+    - 8
+    - 13
+    - 18
+    - 23
+    Parietal:
+    - 4
+    - 9
+    - 14
+    - 19
+    - 24
+    Sensorimotor:
+    - 1
+    - 6
+    - 11
+    - 16
+    - 21
+    - 26
+    Visual:
+    - 35
+    - 40
+    - 45
+    - 50
+  downstream_tasks:
+  - fnc
+  - dfnc
+  - classification
+model:
+  decoder_depth: 4
+  decoder_embed_dim: 128
+  decoder_num_heads: 4
+  depth: 6
+  embed_dim: 256
+  mlp_ratio: 4.0
+  norm_pix_loss: false
+  num_heads: 8
+  num_regions: 53
+  patch_size_T: 10
+  seq_len: 200
+output:
+  checkpoint_dir: outputs/test_run/models
+  log_dir: outputs/test_run/logs
+  results_dir: outputs/test_run/results
+  save_best_only: true
+seed: 42
+training:
+  batch_size: 32
+  epochs: 100
+  grad_clip: 1.0
+  learning_rate: 0.0001
+  mask_ratio: 0.75
+  num_workers: 4
+  patience: 20
+  weight_decay: 0.05

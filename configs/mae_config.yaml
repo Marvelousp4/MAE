@@ -1,0 +1,58 @@
+# fMRI-MAE Configuration
+# General settings
+seed: 42
+
+model:
+  # Model architecture - match training configuration
+  num_regions: 53
+  seq_len: 200
+  patch_size_T: 10
+  embed_dim: 256
+  depth: 6
+  num_heads: 8
+  decoder_embed_dim: 128
+  decoder_depth: 4
+  decoder_num_heads: 8
+  mlp_ratio: 4.0
+  norm_pix_loss: false
+
+# Data configuration
+data:
+  input_shape: [53, 200]     # regions x time
+  sequence_length: 200       # temporal dimension
+  num_channels: 1
+  num_rois: 53              # number of brain regions
+
+# Masking strategy
+masking:
+  mask_ratio: 0.75
+  masking_strategy: 'spatiotemporal'
+
+# Training parameters
+training:
+  batch_size: 2
+  learning_rate: 1e-4
+  weight_decay: 0.05
+  num_epochs: 100
+  warmup_epochs: 10
+
+# Evaluation parameters
+evaluation:
+  batch_size: 4
+  num_samples: 50
+  brain_networks:
+    visual: [0, 5]       # Visual network (regions 0-5)  
+    somatomotor: [6, 15] # Somatomotor network (regions 6-15)
+    dorsalatt: [16, 25]  # Dorsal attention network (regions 16-25)
+    ventralatt: [26, 35] # Ventral attention network (regions 26-35)
+    limbic: [36, 45]     # Limbic network (regions 36-45)
+    control: [46, 52]    # Cognitive control network (regions 46-52)
+  downstream_tasks:
+    - 'fnc'
+    - 'dfnc' 
+    - 'classification'
+
+# Output settings
+output:
+  save_dir: 'outputs'
+  log_interval: 10

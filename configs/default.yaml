@@ -1,0 +1,60 @@
+# Default model configuration for fMRI MAE
+model:
+  num_regions: 53
+  seq_len: 200
+  patch_size_T: 10
+  embed_dim: 256
+  depth: 6
+  num_heads: 8
+  decoder_embed_dim: 128
+  decoder_depth: 4
+  decoder_num_heads: 4
+  mlp_ratio: 4.0
+  norm_pix_loss: false
+
+# Training configuration
+training:
+  learning_rate: 1.0e-4
+  weight_decay: 0.05
+  batch_size: 32
+  epochs: 100
+  mask_ratio: 0.75
+  patience: 20
+  grad_clip: 1.0
+  num_workers: 4
+
+# Data configuration
+data:
+  dataset_name: "synthetic"  # or "abide", "hcp"
+  data_dir: "data/"
+  n_pretrain_subjects: 1000
+  n_downstream_subjects: 300
+  train_val_split: 0.9
+  test_split: 0.3
+  val_split: 0.5
+
+# Output configuration  
+output:
+  checkpoint_dir: "outputs/models"
+  log_dir: "outputs/logs"
+  results_dir: "outputs/results"
+  save_best_only: true
+
+# Evaluation configuration
+evaluation:
+  downstream_tasks:
+    - "fnc"
+    - "dfnc"  
+    - "classification"
+  
+  brain_networks:
+    DMN: [0, 5, 10, 15, 20, 25, 30]
+    Visual: [35, 40, 45, 50]
+    Sensorimotor: [1, 6, 11, 16, 21, 26]
+    Attention: [2, 7, 12, 17, 22]
+    Executive: [3, 8, 13, 18, 23]
+    Parietal: [4, 9, 14, 19, 24]
+
+# Reproducibility
+seed: 42
+deterministic: true

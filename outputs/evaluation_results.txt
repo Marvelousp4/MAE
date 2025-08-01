@@ -1,0 +1,19 @@
+fMRI-MAE Evaluation Results
+==================================================
+
+Static Connectivity:
+  FNC matrix shape: torch.Size([6, 6])
+  Mean connectivity: 1.0000
+  Connectivity range: [1.000, 1.000]
+
+Dynamic Connectivity:
+  Number of time windows: 16
+  Number of states: 4
+
+Classification:
+  Test accuracy: 1.000
+
+Feature Quality:
+  Feature mean: -0.0002
+  Feature std: 0.9879
+  Feature range: [-4.206, 2.940]
